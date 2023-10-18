@@ -1,9 +1,9 @@
-package com.inmobiliaria.repository;
+package com.inmobiliaria.service;
 
 import java.util.List;
 import com.inmobiliaria.model.CharacteristicGroups;
 
-public interface ICharacteristicGroupsRepository {
+public interface ICharacteristicGroupsService {
 
 	public List<CharacteristicGroups> findAll();
 	public int save (CharacteristicGroups group);

@@ -1,12 +1,14 @@
 package com.inmobiliaria.repository;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.inmobiliaria.model.Locations;
 
+@Repository
 public class LocationsRepository implements ILocationsRepository{
 
 	//Inyectamos el JDBD para poder realizar las consultas a la BBDD
@@ -23,26 +25,26 @@ public class LocationsRepository implements ILocationsRepository{
 	}
 
 	@Override
-	public int save(Locations locations) {
+	public int save(Locations location) {
 		
 		//El INSERT devuelve los valores de la tabla locations
-		String SQL = "INSERT INTO locations VALUES(?)";
-		return jdbcTemplate.update(SQL, new Object[] {locations.getName()});
+		String SQL = "INSERT INTO locations (name) VALUES(?)";
+		return jdbcTemplate.update(SQL, new Object[] {location.getName()});
 	}
 
 	@Override
-	public int update(Locations locations) {
+	public int update(Locations location) {
 		
 		//El UPDATE es lo mismo que el INSERT, pero filtrando con el WHERE id
 		String SQL = "UPDATE locations SET name =? WHERE id = ?";
-		return jdbcTemplate.update(SQL, new Object[] {locations.getName()});
+		return jdbcTemplate.update(SQL, new Object[] {location.getName(), location.getId()});
 	}
 
 	@Override
 	public int deleteById(int id) {
 
 		//El DELETE podría ser un update, si tuviera un atributo para esconderlo. En mi caso, por ahora, será un delete from
-		String SQL = "DELETE * FROM locations WHERE id = ?";
+		String SQL = "DELETE FROM locations WHERE id = ?";
 		return jdbcTemplate.update(SQL, new Object[] {id});
 	}
 

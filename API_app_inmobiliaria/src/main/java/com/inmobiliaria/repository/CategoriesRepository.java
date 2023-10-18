@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.inmobiliaria.model.Categories;
 
+@Repository
 public class CategoriesRepository implements ICategoriesRepository {
 
 	//Inyectamos el JDBD para poder realizar las consultas a la BBDD
@@ -27,7 +29,7 @@ public class CategoriesRepository implements ICategoriesRepository {
 	public int save(Categories category) {
 
 		//El INSERT devuelve los valores de la tabla locations
-		String SQL = "INSERT INTO categories VALUES(?)";
+		String SQL = "INSERT INTO categories (name) VALUES(?)";
 		return jdbcTemplate.update(SQL, new Object[] {category.getName()});
 	}
 
@@ -36,14 +38,14 @@ public class CategoriesRepository implements ICategoriesRepository {
 
 		//El UPDATE es lo mismo que el INSERT, pero filtrando con el WHERE id
 		String SQL = "UPDATE categories SET name =? WHERE id = ?";
-		return jdbcTemplate.update(SQL, new Object[] {category.getName()});
+		return jdbcTemplate.update(SQL, new Object[] {category.getName(), category.getId()});
 	}
 
 	@Override
 	public int deleteById(int id) {
 
 		//El DELETE podría ser un update, si tuviera un atributo para esconderlo. En mi caso, por ahora, será un delete from
-		String SQL = "DELETE * FROM categories WHERE id = ?";
+		String SQL = "DELETE FROM categories WHERE id = ?";
 		return jdbcTemplate.update(SQL, new Object[] {id});
 	}
 

@@ -25,19 +25,19 @@ public class PropertiesImagesRepository implements IPropertiesImagesService {
 	}
 
 	@Override
-	public int save(PropertiesImages properties_images) {
+	public int save(PropertiesImages property_image) {
 
 		//El INSERT devuelve los valores de la tabla locations
 		String SQL = "INSERT INTO properties_images (id_property, id_image) VALUES(?,?)";
-		return jdbcTemplate.update(SQL, new Object[] {properties_images.getId_property(), properties_images.getId_image()});
+		return jdbcTemplate.update(SQL, new Object[] {property_image.getId_property(), property_image.getId_image()});
 	}
 
 	@Override
-	public int update(PropertiesImages properties_images) {
+	public int update(PropertiesImages property_image) {
 
 		//El UPDATE es lo mismo que el INSERT, pero filtrando con el WHERE id
 		String SQL = "UPDATE properties_images SET id_property =?, id_image =? WHERE id = ?";
-		return jdbcTemplate.update(SQL, new Object[] {properties_images.getId_property(), properties_images.getId_image(), properties_images.getId()});
+		return jdbcTemplate.update(SQL, new Object[] {property_image.getId_property(), property_image.getId_image(), property_image.getId()});
 	}
 
 	@Override

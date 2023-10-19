@@ -28,13 +28,13 @@ public class PropertiesImagesService implements IPropertiesImagesService {
 	}
 
 	@Override
-	public int save(PropertiesImages properties_images) {
+	public int save(PropertiesImages property_image) {
 
 		int new_property_image;
 		
 		try {
 			
-			new_property_image = iPropertiesImagesRepository.save(properties_images);
+			new_property_image = iPropertiesImagesRepository.save(property_image);
 		}catch(Exception ex) {
 			
 			throw ex;
@@ -43,13 +43,13 @@ public class PropertiesImagesService implements IPropertiesImagesService {
 	}
 
 	@Override
-	public int update(PropertiesImages properties_images) {
+	public int update(PropertiesImages property_image) {
 
 		int update_property_image;
 		
 		try {
 			
-			update_property_image = iPropertiesImagesRepository.update(properties_images);		
+			update_property_image = iPropertiesImagesRepository.update(property_image);		
 		}catch(Exception ex) {
 			
 			throw ex;

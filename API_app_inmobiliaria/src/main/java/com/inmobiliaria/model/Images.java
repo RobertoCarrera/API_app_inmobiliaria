@@ -6,5 +6,5 @@ import lombok.Data;
 public class Images {
 
 	int id;
-	int name;
+	String name;
 }

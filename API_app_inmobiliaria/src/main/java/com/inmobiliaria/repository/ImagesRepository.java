@@ -34,7 +34,7 @@ public class ImagesRepository implements IImagesRepository {
 	public int update(Images image) {
 
 		//El UPDATE es lo mismo que el INSERT, pero filtrando con el WHERE id
-				String SQL = "UPDATE locations SET name =? WHERE id = ?";
+				String SQL = "UPDATE images SET name =? WHERE id = ?";
 				return jdbcTemplate.update(SQL, new Object[] {image.getName(), image.getId()});
 	}
 
@@ -42,7 +42,7 @@ public class ImagesRepository implements IImagesRepository {
 	public int deleteById(int id) {
 
 		//El DELETE podría ser un update, si tuviera un atributo para esconderlo. En mi caso, por ahora, será un delete from
-		String SQL = "DELETE FROM locations WHERE id = ?";
+		String SQL = "DELETE FROM images WHERE id = ?";
 		return jdbcTemplate.update(SQL, new Object[] {id});
 	}
 
